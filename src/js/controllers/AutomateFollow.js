@@ -3,7 +3,9 @@ import { START, STOP, PLAYING, ERROR } from 'workerStates';
 import { putTask } from 'redux/actions/taskActions';
 import { connect } from 'react-redux';
 import workers from 'insta-workers';
-const { fork, path } = window.require('electron').remote.require('./main');
+const { fork, path } = window
+  .require('electron')
+  .remote.require('./electron.js');
 
 class AutomateFollow extends Component {
   children = [];

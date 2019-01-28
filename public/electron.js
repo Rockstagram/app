@@ -1,5 +1,5 @@
 // Modules to control application life and create native browser window
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow } = require('electron');
 const path = require('path');
 const fork = require('child_process').fork;
 const url = require('url');
@@ -15,9 +15,8 @@ exports.path = path;
 let mainWindow;
 
 function createWindow() {
+  console.log('DEVELOPMENT MODE?', devMode);
   if (devMode) {
-    console.log('DEVELOPMENT MODE');
-    // DEVTOOLS
     const {
       default: installExtension,
       REDUX_DEVTOOLS
@@ -34,7 +33,8 @@ function createWindow() {
     height: 600,
     titleBarStyle: 'hiddenInset',
     webPreferences: {
-      devTools: devMode
+      devTools: devMode,
+      nodeIntegration: true
     }
   });
 
@@ -45,11 +45,12 @@ function createWindow() {
   }
 
   // and load the index.html of the app.
-  // mainWindow.loadFile('index.html')
   const startUrl =
     process.env.ELECTRON_START_URL ||
     url.format({
-      pathname: path.join(__dirname, '/../build/index.html'),
+      pathname: devMode
+        ? path.join(__dirname, '/../build/index.html')
+        : path.join(__dirname, './index.html'),
       protocol: 'file:',
       slashes: true
     });

@@ -7,16 +7,16 @@
   "private": true,
   "dependencies": {
     "electron-updater": "^4.0.6",
-    "insta-workers": "git+https://github.com/ThibaultJanBeyer/insta-workers.git"
+    "insta-workers": "git@github.com:Rockstagram/workers.git"
   },
   "main": "public/electron.js",
-  "homepage": "https://rockstagram.app/",
+  "homepage": ".",
   "repository": "https://github.com/Rockstagram/app",
   "scripts": {
-    "electron": "electron .",
+    "electron": "MODE=development electron .",
     "prestart": "npm install",
     "postinstall": "electron-builder install-app-deps",
-    "electron-dev": "npm start | nodemon --watch electron --exec 'ELECTRON_START_URL=http://localhost:3000 MODE=development electron' .",
+    "electron-dev": "npm start | nodemon --watch electron --exec 'ELECTRON_START_URL= MODE=development electron' .",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
