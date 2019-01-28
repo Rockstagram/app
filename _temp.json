@@ -1,0 +1,44 @@
+{
+  "build": {
+    "appId": "com.rockstagram.app",
+    "artifactName": "${productName}-${version}.${ext}",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*",
+      "!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}",
+      "!**/node_modules/*/{test,__tests__,tests,powered-test,example,examples}",
+      "!**/node_modules/*.d.ts",
+      "!**/node_modules/react-*",
+      "!**/node_modules/react",
+      "!**/node_modules/redux",
+      "!**/node_modules/electron",
+      "!**/node_modules/electron-*",
+      "!**/node_modules/nodemon",
+      "!**/node_modules/prop-types",
+      "!**/node_modules/postcss-*",
+      "!**/node_modules/postcss",
+      "!**/node_modules/@csstools",
+      "!**/node_modules/@fortawesome",
+      "!**/node_modules/.bin",
+      "!**/*.{iml,o,hprof,orig,pyc,pyo,rbc,swp,csproj,sln,xproj}",
+      "!.editorconfig",
+      "!**/._*",
+      "!**/{.DS_Store,.git,.hg,.svn,CVS,RCS,SCCS,.gitignore,.gitattributes}",
+      "!**/{__pycache__,thumbs.db,.flowconfig,.idea,.vs,.nyc_output,.vscode,.prettierrc,.eslintrc.json}",
+      "!**/{appveyor.yml,.travis.yml,circle.yml}",
+      "!**/{npm-debug.log,yarn.lock,.yarn-integrity,.yarn-metadata.json}",
+      "!**/src"
+    ],
+    "publish": {
+      "provider": "github"
+    },
+    "directories": {
+      "buildResources": "buildResources"
+    },
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": "dmg",
+      "icon": "buildResources/icon.icns"
+    }
+  }
+}

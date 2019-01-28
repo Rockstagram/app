@@ -1,0 +1,7 @@
+.Header {
+  text-align: center;
+  -webkit-app-region: drag;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+  padding: 10px;
+  background: var(--c-background-header);
+}

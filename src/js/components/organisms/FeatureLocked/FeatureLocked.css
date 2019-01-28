@@ -1,0 +1,7 @@
+.FeatureLocked__container {
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: var(--gutter);
+  grid-row-gap: var(--gutter-xl);
+}

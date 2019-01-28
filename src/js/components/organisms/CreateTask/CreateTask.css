@@ -1,0 +1,15 @@
+.CreateTask__panel {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.CreateTask__panel-c {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.CreateTask__cta {
+  width: 50%;
+  float: right;
+}

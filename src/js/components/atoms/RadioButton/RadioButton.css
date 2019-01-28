@@ -1,0 +1,12 @@
+.RadioButton {
+  position: relative;
+}
+
+.RadioButton__input {
+  position: absolute;
+  opacity: 0;
+}
+
+.RadioButton__btn {
+  margin-right: 5px;
+}

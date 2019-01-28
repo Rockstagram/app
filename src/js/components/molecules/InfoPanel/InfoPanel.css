@@ -1,0 +1,81 @@
+.InfoPanel {
+  position: relative;
+}
+
+.InfoPanel__link {
+  background-color: var(--c-background-panel);
+  color: var(--c-black);
+  display: inline-block;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+  position: relative;
+  transition: color 150ms ease-in-out,
+    transform 250ms ease-in-out,
+    background-color 150ms ease-in-out,
+    box-shadow 250ms ease-in-out;
+}
+
+.InfoPanel__link:hover,
+.InfoPanel__link:focus {
+  background-color: var(--c-select);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.InfoPanel__link:hover,
+.InfoPanel__link:focus,
+.InfoPanel__link:hover + .InfoPanel__help,
+.InfoPanel__link:focus + .InfoPanel__help {
+  transform: translateY(-2px);
+}
+
+.InfoPanel__link:hover,
+.InfoPanel__link:focus,
+.InfoPanel__link:not(.disabled):hover + .InfoPanel__help,
+.InfoPanel__link:not(.disabled):focus + .InfoPanel__help,
+.InfoPanel__link:not(.disabled):hover .InfoPanel__icon,
+.InfoPanel__link:not(.disabled):focus .InfoPanel__icon {
+  color: var(--c-white);
+}
+
+.InfoPanel__help {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 1.3rem;
+  color: var(--c-grey);
+  opacity: .5;
+  transition: color 150ms ease-in-out,
+    transform 250ms ease-in-out,
+    opacity 150ms ease-in-out;
+}
+
+.InfoPanel__help:hover,
+.InfoPanel__help:focus {
+  opacity: 1;
+}
+
+.InfoPanel__icon {
+  color: var(--c-primary);
+  font-size: 3.5rem;
+  float: left;
+  margin-top: 5px;
+  margin-right: 20px;
+  margin-bottom: 15px;
+  transition: color 150ms ease-in-out;
+}
+
+.InfoPanel__link.disabled .InfoPanel__icon {
+  color: var(--c-grey);
+}
+
+.InfoPanel__info {
+  max-height: 0;
+  transition: max-height 250ms ease-in-out;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.InfoPanel__info--open {
+  max-height: 1000px;
+}

@@ -1,0 +1,19 @@
+.input, .label {
+  display: block;
+}
+
+.label {
+  margin-bottom: 5px;
+  color: var(--c-grey-subtle);
+}
+
+.input {
+  padding: 5px 0;
+  border-bottom: 1px solid var(--c-grey-subtle);
+  width: 100%;
+}
+
+.input:hover,
+.input:focus {
+  border-color: var(--c-grey);
+}

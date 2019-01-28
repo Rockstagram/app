@@ -1,0 +1,19 @@
+body {
+  background: var(--c-background);
+}
+
+.dib {
+  display: inline-block;
+}
+
+.db {
+  display: block;
+}
+
+.mb {
+  margin-bottom: var(--gutter);
+}
+
+.mb-s {
+  margin-bottom: var(--gutter-s);
+}

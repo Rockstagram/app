@@ -1,0 +1,25 @@
+.Table {
+  width: 100%;
+}
+
+.Table__thead {
+  text-align: left;
+  border-bottom: 1px solid var(--c-blue-subtle);
+}
+
+.Table__tr td, .Table__th {
+  padding: 10px;
+}
+
+.Table__th {
+  padding-bottom: 5px;
+  font-weight: normal;
+}
+
+.Table__tbody .Table__tr {
+  transition: background-color 250ms ease-in-out;
+}
+
+.Table__tbody .Table__tr:hover {
+  background-color: var(--c-grey-breeze);
+}

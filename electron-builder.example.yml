@@ -1,0 +1,15 @@
+appId: com.rockstagram.app
+productName: Rockstagram
+artifactName: ${productName}-${version}.${ext}
+files:
+  - build/**/*
+  - node_modules/**/*
+publish:
+  provider: github
+  token: # see: https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/
+directories:
+  buildResources: "buildResources"
+mac:
+  category: public.app-category.productivity
+  target: dmg
+  icon: buildResources/icon.icns

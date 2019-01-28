@@ -1,0 +1,12 @@
+.Footer {
+  background: #303238;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  font-size: .8rem;
+  cursor: pointer;
+}
+
+.Footer__link {
+  all: unset;
+}

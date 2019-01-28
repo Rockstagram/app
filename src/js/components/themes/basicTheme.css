@@ -1,0 +1,46 @@
+:root {
+  --c-white: #f4f5fc;
+  --c-white-pure: #fff;
+  --c-blue-subtle: #dde5f9;
+  --c-blue: #3555f5;
+  --c-yellow: #F6C973;
+  --c-red: #F7784E;
+  --c-green: #64C217;
+  --c-grey-subtle: #cbcbd9;
+  --c-grey-breeze: #f1f1f1;
+  --c-grey: #686876;
+  --c-purple: #a7abdd;
+  --c-black: black;
+
+  --c-primary: var(--c-blue);
+  --c-secondary: var(--c-green);
+  --color-alert: red;
+  --color-success: greenyellow;
+
+  --c-select: var(--c-primary);
+  --c-select-alt: var(--c-white);
+  --c-background: var(--c-white);
+  --c-background-header: var(--c-white-pure);
+  --c-background-panel: var(--c-white-pure);
+
+  --gradient-primary: linear-gradient(to bottom right, aqua 0%, #3555f5 100%);
+  --gradient-grey: linear-gradient(to bottom right, lightgrey 0%, darkgray 100%);
+
+  --gutter-xs: 5px;
+  --gutter-s: 10px;
+  --gutter: 15px;
+  --gutter-l: 30px;
+  --gutter-xl: 40px;
+
+  --font-size-s: 0.8rem;
+}
+
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}

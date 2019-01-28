@@ -1,0 +1,33 @@
+html,
+body,
+#root,
+.FullSizeTemplate {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.FullSizeTemplate {
+  display: grid;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+  grid-template-rows: auto 1fr auto;
+  box-sizing: border-box;
+}
+
+.header {
+  grid-area: header;
+}
+
+.main {
+  grid-area: main;
+  padding: 20px 25px 0 10px;
+  overflow: auto;
+  box-sizing: border-box;
+}
+
+.footer {
+  grid-area: footer;
+}

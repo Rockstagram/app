@@ -1,0 +1,7 @@
+.Tasks {
+  width: 100%;
+}
+
+.Tasks__input {
+  max-width: 60px;
+}

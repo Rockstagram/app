@@ -1,0 +1,24 @@
+.SideMenu {
+  margin-left: 20px;
+}
+
+.SideMenu__item {
+  font-weight: bolder;
+  margin-bottom: 20px;
+}
+
+.SideMenu__icon,
+.SideMenu__link {
+  color: var(--c-grey);
+  opacity: .5;
+  transition: opacity 150ms ease-in-out;
+}
+
+.SideMenu__link:hover,
+.SideMenu__link:focus {
+  opacity: 1;
+}
+
+.SideMenu__link--current {
+  opacity: 1;
+}
