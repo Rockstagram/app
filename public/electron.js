@@ -6,13 +6,26 @@ const url = require('url');
 const { autoUpdater } = require('electron-updater');
 const devMode = process.env.MODE === 'development';
 
-// workers
-exports.fork = fork;
-exports.path = path;
+const ChromeManager = require('./chrome-manager');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow;
+let mainWindow, cManager;
+
+// for workers
+exports.fork = fork;
+exports.path = path;
+exports.getExecutablePath = () => {
+  return cManager.executablePath;
+};
+
+async function getChromium() {
+  cManager = new ChromeManager({
+    app,
+    mainWindow
+  });
+  await cManager.setup();
+}
 
 function createWindow() {
   console.log('DEVELOPMENT MODE?', devMode);
@@ -33,16 +46,16 @@ function createWindow() {
     height: 600,
     titleBarStyle: 'hiddenInset',
     webPreferences: {
-      devTools: devMode,
+      // devTools: devMode,
       nodeIntegration: true
     }
   });
 
-  if (!devMode) {
-    mainWindow.webContents.on('devtools-opened', () => {
-      mainWindow.webContents.closeDevTools();
-    });
-  }
+  // if (!devMode) {
+  //   mainWindow.webContents.on('devtools-opened', () => {
+  //     mainWindow.webContents.closeDevTools();
+  //   });
+  // }
 
   // and load the index.html of the app.
   const startUrl =
@@ -65,6 +78,14 @@ function createWindow() {
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
     mainWindow = null;
+  });
+
+  mainWindow.webContents.once('dom-ready', async () => {
+    console.log('loading…');
+    mainWindow.webContents.send('app-init', true);
+    await getChromium();
+    mainWindow.webContents.send('app-init', false);
+    console.log('loaded √');
   });
 }
 
