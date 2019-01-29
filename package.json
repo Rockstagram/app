@@ -24,6 +24,7 @@
     "ship-mac": "build --mac --config buildScripts/electron-builder.yml -p always"
   },
   "dependencies": {
+    "electron-dl": "^1.13.0",
     "electron-updater": "^4.0.6",
     "extract-zip": "^1.6.7",
     "insta-workers": "git@github.com:Rockstagram/workers.git",
