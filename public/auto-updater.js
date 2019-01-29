@@ -33,15 +33,14 @@ Current: ${version}. New Version: ${latest}.
 Do you want to download it?
 
 (to update, download the new version and simply replace the old app with the new one)
-  `;
 
-  if (releaseNotes) {
-    const splitNotes = releaseNotes.split(/[^\r]\n/);
-    message += '\n\nRelease notes:\n';
-    splitNotes.forEach(notes => {
-      message += notes + '\n\n';
-    });
-  }
+${
+  releaseNotes
+    ? `Release notes:
+${releaseNotes}`
+    : ''
+}
+  `;
 
   dialog.showMessageBox(
     {

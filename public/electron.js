@@ -89,7 +89,6 @@ function createWindow() {
     console.log('loaded √');
   });
 
-  appUpdater(mainWindow);
   if (!isDev) appUpdater(mainWindow);
 }
 
