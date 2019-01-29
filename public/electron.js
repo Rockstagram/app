@@ -3,10 +3,10 @@ const { app, BrowserWindow } = require('electron');
 const path = require('path');
 const fork = require('child_process').fork;
 const url = require('url');
-const { autoUpdater } = require('electron-updater');
-const devMode = process.env.MODE === 'development';
-
 const ChromeManager = require('./chrome-manager');
+const { appUpdater } = require('./auto-updater');
+
+const isDev = process.env.MODE === 'development';
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -28,8 +28,8 @@ async function getChromium() {
 }
 
 function createWindow() {
-  console.log('DEVELOPMENT MODE?', devMode);
-  if (devMode) {
+  console.log('DEVELOPMENT MODE?', isDev);
+  if (isDev) {
     const {
       default: installExtension,
       REDUX_DEVTOOLS
@@ -46,12 +46,12 @@ function createWindow() {
     height: 600,
     titleBarStyle: 'hiddenInset',
     webPreferences: {
-      // devTools: devMode,
+      // devTools: isDev,
       nodeIntegration: true
     }
   });
 
-  // if (!devMode) {
+  // if (!isDev) {
   //   mainWindow.webContents.on('devtools-opened', () => {
   //     mainWindow.webContents.closeDevTools();
   //   });
@@ -61,7 +61,7 @@ function createWindow() {
   const startUrl =
     process.env.ELECTRON_START_URL ||
     url.format({
-      pathname: devMode
+      pathname: isDev
         ? path.join(__dirname, '/../build/index.html')
         : path.join(__dirname, './index.html'),
       protocol: 'file:',
@@ -83,10 +83,14 @@ function createWindow() {
   mainWindow.webContents.once('dom-ready', async () => {
     console.log('loading…');
     mainWindow.webContents.send('app-init', true);
+    mainWindow.webContents.send('app-version', app.getVersion());
     await getChromium();
     mainWindow.webContents.send('app-init', false);
     console.log('loaded √');
   });
+
+  appUpdater(mainWindow);
+  if (!isDev) appUpdater(mainWindow);
 }
 
 // This method will be called when Electron has finished
@@ -94,18 +98,7 @@ function createWindow() {
 // Some APIs can only be used after this event occurs.
 app.on('ready', function() {
   createWindow();
-  autoUpdater.checkForUpdatesAndNotify();
 });
-
-// // when the update has been downloaded and is ready to be installed, notify the BrowserWindow
-// autoUpdater.on('update-downloaded', () => {
-//   mainWindow.webContents.send('updateReady');
-// });
-
-// // when receiving a quitAndInstall signal, quit and install the new version ;)
-// ipcMain.on('quitAndInstall', () => {
-//   autoUpdater.quitAndInstall();
-// });
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function() {

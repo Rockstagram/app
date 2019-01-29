@@ -7,6 +7,7 @@ class IpcRenderer extends Component {
   _addEventListeners() {
     if (this._listeners) return;
     ipcRenderer.on('app-init', (event, arg) => this.props.appInit(arg));
+    ipcRenderer.on('app-version', (event, arg) => console.log(arg));
     this._listeners = true;
   }
 
