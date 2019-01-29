@@ -16,7 +16,7 @@ class Tasks extends Component {
 
   handleNoTasks() {
     return [
-      <td className="Tasks__td" colSpan="7">
+      <td className="Tasks__td" colSpan="7" key="1">
         No tasks yet...
         <NavLink to={LINKS.home}> Create your first task now</NavLink>
       </td>
@@ -35,7 +35,7 @@ class Tasks extends Component {
     );
 
     return (
-      <td className="Tasks__td">
+      <td className="Tasks__td" key="button">
         {task.state === PLAYING ? stopButton : ''}
         {/* <NavLink to={`${LINKS.tasks}/${task.id}`}>Inspect</NavLink> */}
       </td>
@@ -45,9 +45,11 @@ class Tasks extends Component {
   handleTasks() {
     if (this.props.taskItems.length <= 0) return this.handleNoTasks();
 
-    return this.props.taskItems.map(task => [
-      <td className="Tasks__td">{task.date}</td>,
-      <td className="Tasks__td" data-sort={task.id}>
+    return this.props.taskItems.map((task, id) => [
+      <td className="Tasks__td" key={`date${id}`}>
+        {task.date}
+      </td>,
+      <td className="Tasks__td" key={`id${id}`} data-sort={task.id}>
         <input
           className="Tasks__input"
           title={`ID: ${task.id}`}
@@ -55,9 +57,15 @@ class Tasks extends Component {
           disabled
         />
       </td>,
-      <td className="Tasks__td">{task.name}</td>,
-      <td className="Tasks__td">{task.state}</td>,
-      <td className="Tasks__td">{task.value}</td>,
+      <td className="Tasks__td" key={`name${id}`}>
+        {task.name}
+      </td>,
+      <td className="Tasks__td" key={`state${id}`}>
+        {task.state}
+      </td>,
+      <td className="Tasks__td" key={`value${id}`}>
+        {task.value}
+      </td>,
       this.handleTaskActions(task)
     ]);
   }

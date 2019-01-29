@@ -35,7 +35,11 @@ export default class FeatureLocked extends Component {
             ))}
           </ul>
         </ContentPanel>
-        <a onClick={Helper.upgrade} className="btn btn--cta FeatureLocked__cta">
+        <a
+          onClick={Helper.upgrade}
+          className="btn btn--cta FeatureLocked__cta"
+          href="#"
+        >
           {item.buttonText}
           &nbsp;
           <FontAwesomeIcon icon="play-circle" />
