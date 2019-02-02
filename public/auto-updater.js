@@ -24,8 +24,14 @@ async function appUpdater(mainWindow) {
   if (!update) return;
 
   const releaseNotes = json[0].body;
-  const downloadUrl = json[0].assets[1].browser_download_url;
-  const name = json[0].assets[1].name;
+  for(let i = 0, il = json[0].assets.length; i < il; i++) {
+    if(json[0].assets[i].name.indexOf('.dmg') > -1)
+      var asset = json[0].assets[i];
+  }
+  if(!asset) return;
+
+  const downloadUrl = asset.browser_download_url;
+  const name = asset.name;
 
   let message = `
 A new version of ${app.getName()} is now available. 
