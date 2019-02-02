@@ -33,7 +33,11 @@ class UserPanel extends Component {
 
           <LogoutButton />
           {plan === 'plan-s' ? (
-            <button type="button" className="btn" onClick={Helper.upgrade}>
+            <button
+              type="button"
+              className="btn btn--cta"
+              onClick={Helper.upgrade}
+            >
               Upgrade
             </button>
           ) : (
