@@ -25,7 +25,7 @@ async function appUpdater(mainWindow) {
 
   const releaseNotes = json.body;
   for (let i = 0, il = json.assets.length; i < il; i++) {
-    if (json.assets[i].name.indexOf('.dmg') > -1) var asset = json.assets[i];
+    if (json.assets[i].name.endsWith('.dmg')) var asset = json.assets[i];
   }
   if (!asset) return;
 
