@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { planSizes } from 'constantz';
 import { RadioButtons } from 'components';
+import { planSizes } from 'constantz';
 const { SMALL, LARGE } = planSizes;
 
 const InputFieldsSpeed = ({ speed, onChange, className, user }) => {
@@ -65,7 +65,6 @@ const mapStateToProps = state => ({
   user: state.user.item
 });
 
-// Use connect to put them together
 export default connect(
   mapStateToProps,
   null

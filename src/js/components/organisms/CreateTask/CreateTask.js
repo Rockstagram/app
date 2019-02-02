@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './CreateTask.css';
 import {
   ContentPanel,
-  ControlledInputField,
+  InputFieldsKeyword,
   InputFieldsSpeed,
   InputFieldsCredentials
 } from 'components';
@@ -34,7 +34,6 @@ class CreateTask extends Component {
     e.preventDefault();
 
     const { password, username, keyword, speed } = this.state;
-    console.log('SPEEEEEED', speed);
     this.props.postTask({
       config: {
         password,
@@ -46,7 +45,8 @@ class CreateTask extends Component {
       id: Helper.generateUUID(),
       date: Helper.getDate(),
       state: START,
-      name: 'Instagram Follower',
+      name: this.props.title,
+      type: this.props.type,
       message: `Following people interested in “${keyword}”`,
       value: 0
     });
@@ -58,10 +58,11 @@ class CreateTask extends Component {
     if (this.state.redirect) return <Redirect to={LINKS.dashboard} />;
 
     const { username, password, keyword, speed } = this.state;
+    const { title, hasSpeed, hasKeyword } = this.props;
 
     return (
       <div className="CreateTask">
-        <h2 className="h2">Instagram Follower [Create Task]</h2>
+        <h2 className="h2">{title} [Create Task]</h2>
         <form onSubmit={this.handleSubmit}>
           <ContentPanel className="CreateTask__panel">
             <h3 className="h3">Instagram Credentials</h3>
@@ -76,24 +77,19 @@ class CreateTask extends Component {
           <ContentPanel className="CreateTask__panel">
             <h3 className="h3">Task Settings</h3>
             <div className="CreateTask__panel-c">
-              <div>
-                <ControlledInputField
-                  label="Niche Keyword:"
-                  id="keyword"
-                  placeholder="foodporn"
-                  name="keyword"
-                  autoComplete="keyword"
-                  value={keyword || ''}
+              {hasKeyword ? (
+                <InputFieldsKeyword
+                  keyword={keyword}
                   onChange={this.handleChange}
-                  required="true"
-                  subText="
-                  Enter the most relevant keyword to you niche.
-                  This single keyword will be used to find followers
-                  interested in your content.
-                  Never&nbsp;enter more than one keyword per task."
                 />
-              </div>
-              <InputFieldsSpeed speed={speed} onChange={this.handleChange} />
+              ) : (
+                ''
+              )}
+              {hasSpeed ? (
+                <InputFieldsSpeed speed={speed} onChange={this.handleChange} />
+              ) : (
+                ''
+              )}
             </div>
           </ContentPanel>
           <button type="submit" className="btn btn--cta CreateTask__cta">

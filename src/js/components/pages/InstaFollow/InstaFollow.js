@@ -7,7 +7,12 @@ class InstaFollow extends Component {
   render() {
     return (
       <GenericTemplate title="Instagram Follower" className="InstaFollow">
-        <CreateTask />
+        <CreateTask
+          type="follow"
+          title="Instagram Follower"
+          hasKeyword="true"
+          hasSpeed="true"
+        />
       </GenericTemplate>
     );
   }
