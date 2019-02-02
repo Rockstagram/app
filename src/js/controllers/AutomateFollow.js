@@ -19,7 +19,7 @@ class AutomateFollow extends Component {
 
   automate(task) {
     task.executablePath = path.normalize(getExecutablePath());
-    task.isDev = this.props.user.item.email === 'aaa@aaa.aaa' ? false : isDev;
+    task.isDev = this.props.userEmail === 'aaa@aaa.aaa' ? true : isDev;
     console.log('EXEC PATH', task.executablePath, task.isDev);
 
     const workerFile = path.normalize(

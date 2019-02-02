@@ -64,7 +64,7 @@ class Tasks extends Component {
         {task.state}
       </td>,
       <td className="Tasks__td" key={`value${id}`}>
-        {task.value}
+        {task.value === 0 ? 'startup…' : task.value}
       </td>,
       this.handleTaskActions(task)
     ]);
