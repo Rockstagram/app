@@ -1,8 +1,11 @@
 import React from 'react';
 import { FullSizeTemplate, Login } from 'components';
+import { fetchUser } from 'redux/actions/userActions';
+import { connect } from 'react-redux';
 import './Auth.css';
 
-const Auth = () => {
+const Auth = ({ fetchUser }) => {
+  fetchUser();
   return (
     <FullSizeTemplate title="Auth" className="Auth">
       <div className="Auth__content">
@@ -12,4 +15,9 @@ const Auth = () => {
   );
 };
 
-export default Auth;
+const mapActionsToProps = { fetchUser };
+
+export default connect(
+  null,
+  mapActionsToProps
+)(Auth);

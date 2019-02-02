@@ -3,7 +3,7 @@ import { START, STOP, PLAYING } from 'workerStates';
 import { putTask } from 'redux/actions/taskActions';
 import { connect } from 'react-redux';
 import workers from 'insta-workers';
-const { fork, path, getExecutablePath } = window
+const { fork, path, getExecutablePath, isDev } = window
   .require('electron')
   .remote.require('./electron.js');
 
@@ -18,14 +18,17 @@ class AutomateFollow extends Component {
   }
 
   automate(task) {
-    task.config.executablePath = path.normalize(getExecutablePath());
-    console.log('EXEC PATH', task.config.executablePath);
+    task.executablePath = path.normalize(getExecutablePath());
+    task.isDev = isDev;
+    console.log('EXEC PATH', task.executablePath, task.isDev);
+
     const workerFile = path.normalize(
       `${path.parse(window.require.resolve('insta-workers')).dir}/${
         workers.folder
       }/${workers.files.follow}`
     );
     console.log('workers:', workers, 'workerFile', workerFile);
+
     const child = fork(workerFile); // here is a fork example: https://stackoverflow.com/questions/13371113/how-can-i-execute-a-node-js-module-as-a-child-process-of-a-node-js-program --- not related but see: https://www.youtube.com/watch?v=9o8B3L0-d9c
     child.__id = task.id;
     this.children.push(child);

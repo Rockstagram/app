@@ -12,7 +12,9 @@ const isDev = process.env.MODE === 'development';
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow, cManager;
 
+console.log(isDev);
 // for workers
+exports.isDev = isDev;
 exports.fork = fork;
 exports.path = path;
 exports.getExecutablePath = () => {
@@ -46,16 +48,16 @@ function createWindow() {
     height: 600,
     titleBarStyle: 'hiddenInset',
     webPreferences: {
-      // devTools: isDev,
+      devTools: isDev,
       nodeIntegration: true
     }
   });
 
-  // if (!isDev) {
-  //   mainWindow.webContents.on('devtools-opened', () => {
-  //     mainWindow.webContents.closeDevTools();
-  //   });
-  // }
+  if (!isDev) {
+    mainWindow.webContents.on('devtools-opened', () => {
+      mainWindow.webContents.closeDevTools();
+    });
+  }
 
   // and load the index.html of the app.
   const startUrl =

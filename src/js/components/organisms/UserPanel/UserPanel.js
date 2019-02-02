@@ -6,11 +6,14 @@ import { Helper } from 'controllers';
 import './UserPanel.css';
 
 class UserPanel extends Component {
-  state = {
-    type: 'free'
-  };
-
   render() {
+    const { email: username, plan } = this.props.user.item;
+    const accountType =
+      plan === 'plan-s'
+        ? 'free'
+        : plan === 'plan-m'
+          ? 'professional'
+          : 'ultimate';
     return (
       <ContentPanel className="UserPanel">
         <h3 className="h3">Your User Panel</h3>
@@ -19,22 +22,17 @@ class UserPanel extends Component {
             <label className="label" htmlFor="username">
               Username
             </label>
-            <input
-              id="username"
-              type="text"
-              disabled
-              value={this.props.user.item.username}
-            />
+            <input id="username" type="text" disabled value={username} />
           </div>
           <div>
             <label className="label" htmlFor="type">
               Account Type
             </label>
-            <input id="type" type="text" disabled value={this.state.type} />
+            <input id="type" type="text" disabled value={accountType} />
           </div>
 
           <LogoutButton />
-          {this.state.type !== 'premium' ? (
+          {plan === 'plan-s' ? (
             <button type="button" className="btn" onClick={Helper.upgrade}>
               Upgrade
             </button>

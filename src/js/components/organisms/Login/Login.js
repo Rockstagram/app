@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import { LINKS } from 'Routes';
-import { login } from 'redux/actions/userActions';
+import { login, fetchUser } from 'redux/actions/userActions';
 import { ContentPanel } from 'components';
 import './Login.css';
 
@@ -12,6 +12,10 @@ class Login extends Component {
     username: '',
     password: ''
   };
+
+  componentWillMount() {
+    this.props.fetchUser();
+  }
 
   handleChange = event => {
     let { id, value } = event.target;
@@ -73,7 +77,7 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => ({ user: state.user });
-const mapActionsToProps = { login };
+const mapActionsToProps = { login, fetchUser };
 
 export default connect(
   mapStateToProps,
