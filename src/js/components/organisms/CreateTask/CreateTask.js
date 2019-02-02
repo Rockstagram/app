@@ -16,9 +16,9 @@ import { START } from 'workerStates';
 
 class CreateTask extends Component {
   state = {
-    username: 'emiliezeo@gmail.com',
-    password: 'Susanne515',
-    keyword: 'foodstagram',
+    username: '',
+    password: '',
+    keyword: '',
     speed: 1,
     redirect: false
   };
