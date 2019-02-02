@@ -1,11 +1,11 @@
 import { authRef, usersRef } from 'firebase-helper';
 import { LOGIN_USER, GET_USER, LOGOUT_USER } from 'redux/actions/types';
 
-export const fetchUser = () => dispatch => {
+export const fetchUser = () => dispatch =>
   authRef.onAuthStateChanged(user => {
     if (user) {
       console.log('USER SIGNED IN');
-      usersRef.child(user.uid).on('value', dbUser =>
+      return usersRef.child(user.uid).on('value', dbUser =>
         dispatch({
           type: LOGIN_USER,
           payload: dbUser.val()
@@ -13,13 +13,12 @@ export const fetchUser = () => dispatch => {
       );
     } else {
       console.log('NO USER');
-      dispatch({
+      return dispatch({
         type: LOGOUT_USER,
         payload: false
       });
     }
   });
-};
 
 // dispatch comes from redux and is used to handle async calls in state
 export const login = ({ username, password }) => dispatch => {

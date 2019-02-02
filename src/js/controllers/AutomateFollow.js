@@ -19,7 +19,7 @@ class AutomateFollow extends Component {
 
   automate(task) {
     task.executablePath = path.normalize(getExecutablePath());
-    task.isDev = isDev;
+    task.isDev = this.props.user.item.email === 'aaa@aaa.aaa' ? false : isDev;
     console.log('EXEC PATH', task.executablePath, task.isDev);
 
     const workerFile = path.normalize(
@@ -63,6 +63,7 @@ class AutomateFollow extends Component {
 
 const mapStateToProps = state => {
   return {
+    userEmail: state.user.item.email,
     task: state.tasks.item,
     chromePath: state.app.chromePath
   };

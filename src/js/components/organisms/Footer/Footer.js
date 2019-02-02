@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <footer className="Footer" onClick={Helper.website}>
       <a href="#" className="Footer__link">
-        rockstagram.io
+        Rockstagram.app
       </a>
     </footer>
   );
