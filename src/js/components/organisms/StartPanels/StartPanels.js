@@ -1,9 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { InfoPanel } from 'components';
 import { LINKS } from 'Routes';
 import './StartPanels.css';
+import { planSizes } from 'constantz';
+const { SMALL, LARGE } = planSizes;
 
-const StartPanels = () => {
+const StartPanels = ({ user }) => {
   const cObjs = [
     {
       id: 'insta-follow',
@@ -32,7 +35,7 @@ const StartPanels = () => {
       longDesc: `How it works: Rockstagram use artificial intelligence to figure out useless and inactive
       people within your followers and un-follows them. This helps increasing your Instagram Trust-Score.
       If the follower-following ratio is bad, instagram downgrades your rating. Insta-Clean prevents that.`,
-      disabled: true
+      disabled: user.plan === SMALL
     },
     {
       id: 'insta-comment',
@@ -50,7 +53,7 @@ const StartPanels = () => {
       That’s why Rockstagram understands pictures. Rockstagram automatically likes great content
       and write meaningful comments based on the pictures content.
       This is how you’ll skyrocket your followers engagement automatically in 1 minute setup.`,
-      disabled: true
+      disabled: user.plan !== LARGE
     },
     {
       id: 'insta-message',
@@ -68,11 +71,18 @@ const StartPanels = () => {
       longDesc: `How it works: Rockstagram use artificial intelligence to 
       automatically write your followers the messages you want them to read.
       This is how you can reach insane sales-grow in less than 5 minutes setup.`,
-      disabled: true
+      disabled: user.plan !== LARGE
     }
   ];
   const panels = cObjs.map(cObj => <InfoPanel cObj={cObj} key={cObj.id} />);
   return <div className="StartPanels">{panels}</div>;
 };
 
-export default StartPanels;
+const mapStateToProps = state => ({
+  user: state.user.item
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(StartPanels);
