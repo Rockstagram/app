@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
-import { AutomateFollow, WindowManager, IpcRenderer } from 'controllers';
+import { Automate, WindowManager, IpcRenderer } from 'controllers';
 import Routes from 'Routes';
 import store from 'redux/store';
 
@@ -17,7 +17,7 @@ ReactDOM.render(
         <Routes />
       </HashRouter>
 
-      <AutomateFollow />
+      <Automate />
       <WindowManager />
       <IpcRenderer />
     </React.Fragment>

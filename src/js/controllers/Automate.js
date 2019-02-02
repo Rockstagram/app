@@ -8,7 +8,7 @@ const { fork, path, getExecutablePath, isDev } = window
   .require('electron')
   .remote.require('./electron.js');
 
-class AutomateFollow extends Component {
+class Automate extends Component {
   children = [];
 
   render() {
@@ -26,7 +26,7 @@ class AutomateFollow extends Component {
     const workerFile = path.normalize(
       `${path.parse(window.require.resolve('insta-workers')).dir}/${
         workers.folder
-      }/${workers.files.follow}`
+      }/${workers.files[task.type]}`
     );
     console.log('workers:', workers, 'workerFile', workerFile);
 
@@ -77,4 +77,4 @@ const mapActionsToProps = {
 export default connect(
   mapStateToProps,
   mapActionsToProps
-)(AutomateFollow);
+)(Automate);
