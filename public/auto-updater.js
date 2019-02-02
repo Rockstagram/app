@@ -15,20 +15,19 @@ async function appUpdater(mainWindow) {
 
   // mac only (because otherwise we would have to buy an expensive mac license)
   const call = await fetch(
-    'https://api.github.com/repos/Rockstagram/app/releases'
+    'https://api.github.com/repos/Rockstagram/app/releases/latest'
   );
   const json = await call.json();
-  const latest = json[0].name;
+  const latest = json.name;
   const update = version != latest;
   console.log('CURRENT', version, 'LATEST', latest, 'NEEDS UPDATE?', update);
   if (!update) return;
 
-  const releaseNotes = json[0].body;
-  for(let i = 0, il = json[0].assets.length; i < il; i++) {
-    if(json[0].assets[i].name.indexOf('.dmg') > -1)
-      var asset = json[0].assets[i];
+  const releaseNotes = json.body;
+  for (let i = 0, il = json.assets.length; i < il; i++) {
+    if (json.assets[i].name.indexOf('.dmg') > -1) var asset = json.assets[i];
   }
-  if(!asset) return;
+  if (!asset) return;
 
   const downloadUrl = asset.browser_download_url;
   const name = asset.name;
