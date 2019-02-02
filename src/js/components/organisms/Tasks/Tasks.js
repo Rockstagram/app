@@ -3,9 +3,10 @@ import { NavLink } from 'react-router-dom';
 import { LINKS } from 'Routes';
 import { connect } from 'react-redux';
 import { putTask } from 'redux/actions/taskActions';
-import { PLAYING, STOP } from 'workerStates';
 import { ContentPanel, Table } from 'components';
+import { workerStates } from 'constantz';
 import './Tasks.css';
+const { PLAYING, STOP } = workerStates;
 
 class Tasks extends Component {
   stopTask(id) {

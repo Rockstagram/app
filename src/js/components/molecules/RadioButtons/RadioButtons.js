@@ -7,10 +7,8 @@ class RadioButtons extends Component {
   checkedButton = this.props.buttons.filter(btn => btn.checked)[0];
   state = { selected: this.checkedButton.value, redirect: false };
 
-  handleClick(isPro) {
-    if (isPro) {
-      this.setState({ redirect: LINKS.getPro });
-    }
+  handleClick(isPro, disabled) {
+    if (isPro && disabled) this.setState({ redirect: LINKS.getPro });
   }
 
   handleChange = selected => {
@@ -34,7 +32,7 @@ class RadioButtons extends Component {
           onChange={this.handleChange}
           tooltip={tooltip}
           className={className}
-          onClick={() => this.handleClick(isPro)}
+          onClick={() => this.handleClick(isPro, disabled)}
         >
           {content}
         </RadioButton>

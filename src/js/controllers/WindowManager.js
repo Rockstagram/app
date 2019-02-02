@@ -1,7 +1,8 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { putTask } from 'redux/actions/taskActions';
-import { STOP, PLAYING } from 'workerStates';
+import { workerStates } from 'constantz';
+const { STOP, PLAYING } = workerStates;
 const { remote } = window.require('electron');
 const { dialog } = remote;
 const mainWindow = remote.getCurrentWindow();

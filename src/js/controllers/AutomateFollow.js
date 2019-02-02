@@ -1,8 +1,9 @@
 import { Component } from 'react';
-import { START, STOP, PLAYING } from 'workerStates';
 import { putTask } from 'redux/actions/taskActions';
 import { connect } from 'react-redux';
 import workers from 'insta-workers';
+import { workerStates } from 'constantz';
+const { START, STOP, PLAYING } = workerStates;
 const { fork, path, getExecutablePath, isDev } = window
   .require('electron')
   .remote.require('./electron.js');

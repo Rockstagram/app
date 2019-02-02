@@ -1,7 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { planSizes } from 'constantz';
 import { RadioButtons } from 'components';
+const { SMALL, LARGE } = planSizes;
 
-const InputFieldsSpeed = ({ speed, onChange, className }) => {
+const InputFieldsSpeed = ({ speed, onChange, className, user }) => {
   const speedButtons = [
     {
       value: 1,
@@ -10,27 +13,27 @@ const InputFieldsSpeed = ({ speed, onChange, className }) => {
       content: 'Slow'
     },
     {
-      value: 10,
-      checked: speed === 10,
+      value: 3,
+      checked: speed === 3,
       content: 'Med',
       tooltip: 'medium speed [Pro Feature]',
-      disabled: true,
+      disabled: user.plan === SMALL,
       isPro: 'pro'
     },
     {
-      value: 20,
-      checked: speed === 20,
+      value: 5,
+      checked: speed === 5,
       content: 'Fast',
       tooltip: 'fast speed [Pro Feature]',
-      disabled: true,
+      disabled: user.plan === SMALL,
       isPro: 'pro'
     },
     {
-      value: 30,
-      checked: speed === 30,
+      value: 10,
+      checked: speed === 10,
       content: 'Maximum',
       tooltip: 'extreme speed [Premium Feature]',
-      disabled: true,
+      disabled: user.plan !== LARGE,
       isPro: 'premium'
     }
   ];
@@ -43,14 +46,14 @@ const InputFieldsSpeed = ({ speed, onChange, className }) => {
           className={className && `${className}__radio`}
           baseName="speed"
           buttons={speedButtons}
-          onChange={value => onChange({ target: { id: 'speed' }, value })}
+          onChange={value => onChange({ target: { id: 'speed', value } })}
         />
       </div>
       <div className={`${className}__subtext`}>
         <ul>
-          <li>Slow: ~20 users/h (Included)</li>
-          <li>Med: ~100 users/h (Pro)</li>
-          <li>Fast: ~200 users/h (Pro)</li>
+          <li>Slow: ~200 users/h (Included)</li>
+          <li>Med: ~400 users/h (Pro)</li>
+          <li>Fast: ~600 users/h (Pro)</li>
           <li>Maximum: max users/h (Premium)</li>
         </ul>
       </div>
@@ -58,4 +61,12 @@ const InputFieldsSpeed = ({ speed, onChange, className }) => {
   );
 };
 
-export default InputFieldsSpeed;
+const mapStateToProps = state => ({
+  user: state.user.item
+});
+
+// Use connect to put them together
+export default connect(
+  mapStateToProps,
+  null
+)(InputFieldsSpeed);

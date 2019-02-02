@@ -12,7 +12,8 @@ import { postTask } from 'redux/actions/taskActions';
 import { Redirect } from 'react-router-dom';
 import { LINKS } from 'Routes';
 import { Helper } from 'controllers';
-import { START } from 'workerStates';
+import { workerStates } from 'constantz';
+const { START } = workerStates;
 
 class CreateTask extends Component {
   state = {
@@ -26,19 +27,21 @@ class CreateTask extends Component {
   handleChange = event => {
     let { id, value } = event.target;
     this.setState({ [id]: value });
+    console.log('state', id, value, this.state);
   };
 
   handleSubmit = e => {
     e.preventDefault();
 
     const { password, username, keyword, speed } = this.state;
+    console.log('SPEEEEEED', speed);
     this.props.postTask({
       config: {
         password,
         username,
         keyword,
-        waitForClick: 10000 / speed, // between each follow button click. Recommend 10 000
-        waitBetween: 20000 / speed // between each post set. Recommend 20 000. the slower the better.}) {
+        waitForClick: 35000 / (speed * 1), // between each follow button click. Recommend 10 000
+        waitBetween: 30000 / (speed * 1) // between each post set. Recommend 20 000. the slower the better.}) {
       },
       id: Helper.generateUUID(),
       date: Helper.getDate(),
