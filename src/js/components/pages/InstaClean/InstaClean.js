@@ -13,7 +13,14 @@ class InstaClean extends Component {
 
     return (
       <GenericTemplate title="Instagram Cleaner" className="InstaClean">
-        <CreateTask type="clean" title="Instagram Cleaner" hasSpeed="true" />
+        <CreateTask
+          type="clean"
+          title="Instagram Cleaner"
+          hasSpeed="true"
+          hasUserHandle="true"
+          message="Un-Following inactive people"
+          baseSpeed="31000"
+        />
       </GenericTemplate>
     );
   }

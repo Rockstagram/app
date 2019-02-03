@@ -3,6 +3,7 @@ import './CreateTask.css';
 import {
   ContentPanel,
   InputFieldsKeyword,
+  InputFieldsUserHandle,
   InputFieldsSpeed,
   InputFieldsCredentials
 } from 'components';
@@ -20,6 +21,7 @@ class CreateTask extends Component {
     username: '',
     password: '',
     keyword: '',
+    userHandle: '',
     speed: 1,
     redirect: false
   };
@@ -33,21 +35,22 @@ class CreateTask extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    const { password, username, keyword, speed } = this.state;
+    const { password, username, keyword, userHandle, speed } = this.state;
+    const { baseSpeed, message, title, type } = this.props;
     this.props.postTask({
       config: {
         password,
         username,
         keyword,
-        waitForClick: 35000 / (speed * 1), // between each follow button click. Recommend 10 000
-        waitBetween: 30000 / (speed * 1) // between each post set. Recommend 20 000. the slower the better.}) {
+        userHandle,
+        wait: baseSpeed / (speed * 1) // speed
       },
       id: Helper.generateUUID(),
       date: Helper.getDate(),
       state: START,
-      name: this.props.title,
-      type: this.props.type,
-      message: `Following people interested in “${keyword}”`,
+      name: title,
+      type: type,
+      message: `${message} ${keyword}`,
       value: 0
     });
 
@@ -57,8 +60,14 @@ class CreateTask extends Component {
   render() {
     if (this.state.redirect) return <Redirect to={LINKS.dashboard} />;
 
-    const { username, password, keyword, speed } = this.state;
-    const { title, hasSpeed, hasKeyword } = this.props;
+    const { username, password, keyword, userHandle, speed } = this.state;
+    const {
+      title,
+      hasSpeed,
+      hasKeyword,
+      hasUserHandle,
+      baseSpeed
+    } = this.props;
 
     return (
       <div className="CreateTask">
@@ -85,8 +94,20 @@ class CreateTask extends Component {
               ) : (
                 ''
               )}
+              {hasUserHandle ? (
+                <InputFieldsUserHandle
+                  userHandle={userHandle}
+                  onChange={this.handleChange}
+                />
+              ) : (
+                ''
+              )}
               {hasSpeed ? (
-                <InputFieldsSpeed speed={speed} onChange={this.handleChange} />
+                <InputFieldsSpeed
+                  speed={speed}
+                  onChange={this.handleChange}
+                  baseSpeed={baseSpeed}
+                />
               ) : (
                 ''
               )}
@@ -102,23 +123,9 @@ class CreateTask extends Component {
   }
 }
 
-// Maps state from store to react props
-const mapStateToProps = state => {
-  return {
-    // posts here is what we set in our root reducer as reducer name
-    // it will use that and put it in the react props
-    // You can now say this.props.task
-    tasks: state.tasks
-  };
-};
+const mapStateToProps = state => ({ tasks: state.tasks });
+const mapActionsToProps = { postTask };
 
-// Maps actions to props
-const mapActionsToProps = {
-  // You can now say this.props.postTask
-  postTask
-};
-
-// Use connect to put them together
 export default connect(
   mapStateToProps,
   mapActionsToProps

@@ -12,6 +12,8 @@ class InstaFollow extends Component {
           title="Instagram Follower"
           hasKeyword="true"
           hasSpeed="true"
+          message="Following people interested in "
+          baseSpeed="38000"
         />
       </GenericTemplate>
     );

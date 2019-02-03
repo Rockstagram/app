@@ -14,10 +14,10 @@ const InputFieldsKeyword = ({ keyword, onChange }) => {
         onChange={onChange}
         required="true"
         subText="
-                  Enter the most relevant keyword to you niche.
-                  This single keyword will be used to find followers
-                  interested in your content.
-                  Never&nbsp;enter more than one keyword per task."
+          Enter the most relevant keyword to you niche.
+          This single keyword will be used to find followers
+          interested in your content.
+          Never&nbsp;enter more than one keyword per task."
       />
     </div>
   );

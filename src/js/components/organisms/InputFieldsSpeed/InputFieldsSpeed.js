@@ -4,7 +4,13 @@ import { RadioButtons } from 'components';
 import { planSizes } from 'constantz';
 const { SMALL, LARGE } = planSizes;
 
-const InputFieldsSpeed = ({ speed, onChange, className, user }) => {
+const InputFieldsSpeed = ({
+  speed,
+  onChange,
+  className,
+  user,
+  baseSpeed = 3500
+}) => {
   const speedButtons = [
     {
       value: 1,
@@ -51,9 +57,11 @@ const InputFieldsSpeed = ({ speed, onChange, className, user }) => {
       </div>
       <div className={`${className}__subtext`}>
         <ul>
-          <li>Slow: ~200 users/h (Included)</li>
-          <li>Med: ~400 users/h (Pro)</li>
-          <li>Fast: ~600 users/h (Pro)</li>
+          <li>
+            Slow: ~{Math.floor((35000 * 200) / baseSpeed)} users/h (Included)
+          </li>
+          <li>Med: ~{Math.floor((35000 * 400) / baseSpeed)} users/h (Pro)</li>
+          <li>Fast: ~{Math.floor((35000 * 600) / baseSpeed)} users/h (Pro)</li>
           <li>Maximum: max users/h (Premium)</li>
         </ul>
       </div>

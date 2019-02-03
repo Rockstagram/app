@@ -7,7 +7,7 @@ const InputFieldsCredentials = ({ username, password, onChange }) => {
       label: 'Instagram Login:',
       id: 'username',
       type: 'text',
-      placeholder: 'username',
+      placeholder: 'username or email',
       name: 'username',
       autoComplete: 'username',
       value: username || '',

@@ -28,7 +28,14 @@ class Automate extends Component {
         workers.folder
       }/${workers.files[task.type]}`
     );
-    console.log('workers:', workers, 'workerFile', workerFile);
+    console.log(
+      'workers:',
+      workers,
+      'workerFile',
+      workerFile,
+      'type',
+      task.type
+    );
 
     const child = fork(workerFile); // here is a fork example: https://stackoverflow.com/questions/13371113/how-can-i-execute-a-node-js-module-as-a-child-process-of-a-node-js-program --- not related but see: https://www.youtube.com/watch?v=9o8B3L0-d9c
     child.__id = task.id;
