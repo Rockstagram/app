@@ -9,7 +9,8 @@ const InputFieldsSpeed = ({
   onChange,
   className,
   user,
-  baseSpeed = 3500
+  baseSpeed = 3500,
+  baseFactor = 100
 }) => {
   const speedButtons = [
     {
@@ -27,16 +28,16 @@ const InputFieldsSpeed = ({
       isPro: 'pro'
     },
     {
-      value: 5,
-      checked: speed === 5,
+      value: 4,
+      checked: speed === 4,
       content: 'Fast',
       tooltip: 'fast speed [Pro Feature]',
       disabled: user.plan === SMALL,
       isPro: 'pro'
     },
     {
-      value: 10,
-      checked: speed === 10,
+      value: 8,
+      checked: speed === 8,
       content: 'Maximum',
       tooltip: 'extreme speed [Premium Feature]',
       disabled: user.plan !== LARGE,
@@ -58,10 +59,17 @@ const InputFieldsSpeed = ({
       <div className={`${className}__subtext`}>
         <ul>
           <li>
-            Slow: ~{Math.floor((35000 * 200) / baseSpeed)} users/h (Included)
+            Slow: ~{Math.floor((60000 * baseFactor * 1) / baseSpeed)} users/h
+            (Included)
           </li>
-          <li>Med: ~{Math.floor((35000 * 400) / baseSpeed)} users/h (Pro)</li>
-          <li>Fast: ~{Math.floor((35000 * 600) / baseSpeed)} users/h (Pro)</li>
+          <li>
+            Med: ~{Math.floor((60000 * baseFactor * 2) / baseSpeed)} users/h
+            (Pro)
+          </li>
+          <li>
+            Fast: ~{Math.floor((60000 * baseFactor * 3) / baseSpeed)} users/h
+            (Pro)
+          </li>
           <li>Maximum: max users/h (Premium)</li>
         </ul>
       </div>

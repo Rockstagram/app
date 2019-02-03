@@ -13,7 +13,8 @@ class InstaFollow extends Component {
           hasKeyword="true"
           hasSpeed="true"
           message="Following people interested in "
-          baseSpeed="48000"
+          baseSpeed="45000"
+          baseFactor="51"
         />
       </GenericTemplate>
     );

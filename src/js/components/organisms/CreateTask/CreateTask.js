@@ -45,7 +45,7 @@ class CreateTask extends Component {
     };
     if (runningTasks.length >= mapPlansToTasks[userPlan]) {
       console.log(runningTasks.length, mapPlansToTasks[userPlan], userPlan);
-      const choice = confirm(`
+      const choice = window.confirm(`
 You’re not allowed to run more than
 ${mapPlansToTasks[userPlan]} Tasks of the same type in parallel.
 ${userPlan !== LARGE ? 'Upgrade your plan to remove the limits.' : ''}
@@ -94,7 +94,8 @@ ${userPlan !== LARGE ? 'Upgrade your plan to remove the limits.' : ''}
       hasSpeed,
       hasKeyword,
       hasUserHandle,
-      baseSpeed
+      baseSpeed,
+      baseFactor
     } = this.props;
 
     return (
@@ -135,6 +136,7 @@ ${userPlan !== LARGE ? 'Upgrade your plan to remove the limits.' : ''}
                   speed={speed}
                   onChange={this.handleChange}
                   baseSpeed={baseSpeed}
+                  baseFactor={baseFactor}
                 />
               ) : (
                 ''
