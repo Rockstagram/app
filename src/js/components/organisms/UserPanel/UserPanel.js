@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { ContentPanel, LogoutButton } from 'components';
 import { Helper } from 'controllers';
 import './UserPanel.css';
+import { planSizes } from 'constantz';
+const { LARGE } = planSizes;
 
 class UserPanel extends Component {
   render() {
@@ -32,7 +34,7 @@ class UserPanel extends Component {
           </div>
 
           <LogoutButton />
-          {plan === 'plan-s' ? (
+          {plan !== LARGE ? (
             <button
               type="button"
               className="btn btn--cta"

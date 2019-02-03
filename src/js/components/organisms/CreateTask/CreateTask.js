@@ -13,8 +13,9 @@ import { postTask } from 'redux/actions/taskActions';
 import { Redirect } from 'react-router-dom';
 import { LINKS } from 'Routes';
 import { Helper } from 'controllers';
-import { workerStates } from 'constantz';
-const { START } = workerStates;
+import { workerStates, parallelTasks, planSizes } from 'constantz';
+const { START, PLAYING } = workerStates;
+const { SMALL, MEDIUM, LARGE } = planSizes;
 
 class CreateTask extends Component {
   state = {
@@ -32,8 +33,34 @@ class CreateTask extends Component {
     console.log('state', id, value, this.state);
   };
 
+  checkLimits = () => {
+    const { userPlan, taskItems, type } = this.props;
+    const runningTasks = taskItems.filter(
+      task => task.state === PLAYING && task.type === type
+    );
+    const mapPlansToTasks = {
+      [SMALL]: parallelTasks[SMALL],
+      [MEDIUM]: parallelTasks[MEDIUM],
+      [LARGE]: parallelTasks[LARGE]
+    };
+    if (runningTasks.length >= mapPlansToTasks[userPlan]) {
+      console.log(runningTasks.length, mapPlansToTasks[userPlan], userPlan);
+      const choice = confirm(`
+You’re not allowed to run more than
+${mapPlansToTasks[userPlan]} Tasks of the same type in parallel.
+${userPlan !== LARGE ? 'Upgrade your plan to remove the limits.' : ''}
+      `);
+      console.log(choice);
+      if (choice) this.setState({ buyPro: true });
+      return false;
+    }
+    return true;
+  };
+
   handleSubmit = e => {
     e.preventDefault();
+
+    if (!this.checkLimits()) return false;
 
     const { password, username, keyword, userHandle, speed } = this.state;
     const { baseSpeed, message, title, type } = this.props;
@@ -59,6 +86,7 @@ class CreateTask extends Component {
 
   render() {
     if (this.state.redirect) return <Redirect to={LINKS.dashboard} />;
+    if (this.state.buyPro) return <Redirect to={LINKS.getPro} />;
 
     const { username, password, keyword, userHandle, speed } = this.state;
     const {
@@ -123,7 +151,10 @@ class CreateTask extends Component {
   }
 }
 
-const mapStateToProps = state => ({ tasks: state.tasks });
+const mapStateToProps = state => ({
+  taskItems: state.tasks.items,
+  userPlan: state.user.item.plan
+});
 const mapActionsToProps = { postTask };
 
 export default connect(

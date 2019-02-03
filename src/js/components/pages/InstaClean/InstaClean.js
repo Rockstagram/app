@@ -19,7 +19,7 @@ class InstaClean extends Component {
           hasSpeed="true"
           hasUserHandle="true"
           message="Un-Following inactive people"
-          baseSpeed="31000"
+          baseSpeed="32000"
         />
       </GenericTemplate>
     );
