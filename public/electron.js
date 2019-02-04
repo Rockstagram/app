@@ -83,6 +83,8 @@ function createWindow() {
   });
 
   mainWindow.webContents.once('dom-ready', async () => {
+    console.log('check-for-update');
+    if (!isDev) appUpdater(mainWindow);
     console.log('loading…');
     mainWindow.webContents.send('app-init', true);
     mainWindow.webContents.send('app-version', app.getVersion());
@@ -90,8 +92,6 @@ function createWindow() {
     mainWindow.webContents.send('app-init', false);
     console.log('loaded √');
   });
-
-  if (!isDev) appUpdater(mainWindow);
 }
 
 // This method will be called when Electron has finished
