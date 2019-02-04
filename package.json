@@ -1,6 +1,6 @@
 {
   "name": "rockstagram",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "description": "Automatically follow people in your niche, write comments, clean useless followers, write private messages and much more",
   "author": "Rockstagram",
   "private": true,
@@ -10,8 +10,8 @@
   "scripts": {
     "prestart": "npm install",
     "postinstall": "electron-builder install-app-deps",
-    "electron-solo": "MODE=development electron .",
-    "electron": "nodemon --watch electron --exec 'ELECTRON_START_URL=http://localhost:3000/ MODE=development electron' .",
+    "electron-solo": "ELECTRON_MODE=development electron .",
+    "electron": "nodemon --watch electron --exec 'ELECTRON_START_URL=http://localhost:3000/ ELECTRON_MODE=development electron' .",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

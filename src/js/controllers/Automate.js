@@ -4,9 +4,13 @@ import { connect } from 'react-redux';
 import workers from 'insta-workers';
 import { workerStates } from 'constantz';
 const { START, STOP, PLAYING } = workerStates;
-const { fork, path, getExecutablePath, isDev } = window
-  .require('electron')
-  .remote.require('./electron.js');
+const {
+  fork,
+  path,
+  getExecutablePath,
+  isDev,
+  userSettingsPath
+} = window.require('electron').remote.require('./electron.js');
 
 class Automate extends Component {
   children = [];
@@ -19,6 +23,7 @@ class Automate extends Component {
   }
 
   automate(task) {
+    task.userSettingsPath = userSettingsPath;
     task.executablePath = path.normalize(getExecutablePath());
     task.isDev = this.props.userEmail === 'aaa@aaa.aaa' ? true : isDev;
     console.log('EXEC PATH', task.executablePath, task.isDev);
