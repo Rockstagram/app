@@ -1,6 +1,6 @@
 {
   "name": "rockstagram",
-  "version": "0.4.3",
+  "version": "0.4.6",
   "description": "Automatically follow people in your niche, write comments, clean useless followers, write private messages and much more",
   "author": "Rockstagram",
   "private": true,
@@ -21,7 +21,7 @@
     "pack-win-32": "build --win --ia32 --config buildScripts/electron-builder.yml",
     "pack-linux": "build --linux --config buildScripts/electron-builder.yml",
     "pack-all": "build -mwl --config buildScripts/electron-builder.yml",
-    "ship": "npm run build & npm run ship-mac && npm run ship-win && npm run ship-lin",
+    "ship": "sleep 60; npm run build && npm run ship-mac && sleep 20 && npm run ship-win && sleep 20 && npm run ship-lin",
     "ship-mac": "build --mac --config buildScripts/electron-builder.yml -p always",
     "ship-win": "build --win --ia32 --config buildScripts/electron-builder.yml -p always",
     "ship-lin": "build --linux --config buildScripts/electron-builder.yml -p always",
