@@ -21,7 +21,7 @@
     "pack-win-32": "build --win --ia32 --config buildScripts/electron-builder.yml",
     "pack-linux": "build --linux --config buildScripts/electron-builder.yml",
     "pack-all": "build -mwl --config buildScripts/electron-builder.yml",
-    "ship": "sleep 60; npm run build && npm run ship-mac && sleep 20 && npm run ship-win && sleep 20 && npm run ship-lin",
+    "ship": "npm run build && wait 10 && npm run ship-all",
     "ship-mac": "build --mac --config buildScripts/electron-builder.yml -p always",
     "ship-win": "build --win --ia32 --config buildScripts/electron-builder.yml -p always",
     "ship-lin": "build --linux --config buildScripts/electron-builder.yml -p always",
