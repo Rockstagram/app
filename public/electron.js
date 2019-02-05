@@ -82,7 +82,7 @@ function createWindow() {
 
   mainWindow.webContents.once('dom-ready', async () => {
     console.log('check-for-update');
-    if (!isDev) appUpdater(mainWindow);
+    if (!isDev) await appUpdater(mainWindow);
     console.log('loading…');
     mainWindow.webContents.send('app-init', true);
     mainWindow.webContents.send('app-version', app.getVersion());
