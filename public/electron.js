@@ -1,13 +1,14 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow } = require('electron');
-const fs = require('fs');
 const path = require('path');
 const fork = require('child_process').fork;
 const url = require('url');
+const logging = require('./logging');
 const ChromeManager = require('./chrome-manager');
 const { appUpdater } = require('./auto-updater');
 
 const isDev = process.env.ELECTRON_MODE === 'development';
+logging.writeToFile({ isDev, filePath: `${app.getPath('userData')}/app.log` });
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -15,6 +16,7 @@ let mainWindow, cManager;
 
 console.log(isDev);
 // for workers
+exports.logger = console;
 exports.isDev = isDev;
 exports.fork = fork;
 exports.path = path;
@@ -33,6 +35,7 @@ async function getChromium() {
 
 function createWindow() {
   console.log('DEVELOPMENT MODE?', isDev);
+  console.log('Version: ', app.getVersion());
   if (isDev) {
     const {
       default: installExtension,
@@ -65,10 +68,9 @@ function createWindow() {
       protocol: 'file:',
       slashes: true
     });
-  mainWindow.loadURL(startUrl);
 
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  console.log('Start URL', startUrl);
+  mainWindow.loadURL(startUrl);
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function() {
@@ -116,17 +118,3 @@ app.on('activate', function() {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
-if (!isDev) {
-  const writeStream = fs.createWriteStream(
-    path.normalize(`${app.getPath('userData')}/app.log`),
-    {
-      encoding: 'utf8',
-      flags: 'w'
-    }
-  );
-
-  process.stdout = require('stream').Writable();
-  process.stdout._write = function(chunk, encoding, callback) {
-    writeStream.write(chunk, encoding, callback);
-  };
-}

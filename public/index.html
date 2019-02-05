@@ -19,7 +19,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>Rockstagram</title>
   </head>
   <body>
     <noscript>
@@ -37,7 +37,36 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
     <script>
-      const fork = require('child_process').fork;
+      (() => {
+        const {
+          logger
+        } = window.require('electron').remote.require('./electron.js');
+
+        const baseLogFunction = console.log;
+        console.log = function () {
+          baseLogFunction.apply(console, arguments);
+
+          var args = Array.prototype.slice.call(arguments);
+          for (var i = 0; i < args.length; i++) {
+            logger.log('Frontend: ', args[i]);
+          }
+        }
+
+        const baseErrorFunction = console.error;
+        console.error = function () {
+          baseErrorFunction.apply(console, arguments);
+
+          var args = Array.prototype.slice.call(arguments);
+          for (var i = 0; i < args.length; i++) {
+            logger.error('Frontend: ', args[i]);
+          }
+        }
+
+        window.onerror = function (message, url, linenumber) {
+          console.error("JavaScript error: " + message + " on line " +
+            linenumber + " for " + url);
+        }
+      })();
     </script>
   </body>
 </html>
