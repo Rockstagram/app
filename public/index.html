@@ -37,36 +37,36 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
     <script>
-      (() => {
+      (function () {
         const {
           logger
         } = window.require('electron').remote.require('./electron.js');
 
-        const baseLogFunction = console.log;
-        console.log = function () {
-          baseLogFunction.apply(console, arguments);
+          console._log = console.log;
+          console.log = function () {
+            for (i = 0; i < arguments.length; i++) {
+              arg = arguments[i];
+              logger.log('Frontend: ', arg[i]);
+            }
 
-          var args = Array.prototype.slice.call(arguments);
-          for (var i = 0; i < args.length; i++) {
-            logger.log('Frontend: ', args[i]);
+            console._log.apply(undefined, arguments);
+          };
+
+          console._error = console.log;
+          console.error = function () {
+            for (i = 0; i < arguments.length; i++) {
+              arg = arguments[i];
+              logger.log('Frontend: Error: ', arg[i]);
+            }
+
+            console._error.apply(undefined, arguments);
+          };
+
+          window.onerror = function (message, url, linenumber, ...rest) {
+            console.error(message + " on line " +
+              linenumber + " for " + url, rest);
           }
-        }
-
-        const baseErrorFunction = console.error;
-        console.error = function () {
-          baseErrorFunction.apply(console, arguments);
-
-          var args = Array.prototype.slice.call(arguments);
-          for (var i = 0; i < args.length; i++) {
-            logger.error('Frontend: ', args[i]);
-          }
-        }
-
-        window.onerror = function (message, url, linenumber) {
-          console.error("JavaScript error: " + message + " on line " +
-            linenumber + " for " + url);
-        }
-      })();
+        })();
     </script>
   </body>
 </html>
