@@ -20,7 +20,7 @@ export default new class Helper {
   }
 
   upgrade() {
-    shell.openExternal('https://rockstagram.app/#link_pricing');
+    shell.openExternal('https://rockstagram.app/get-pro.html');
   }
 
   website() {

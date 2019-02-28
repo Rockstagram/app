@@ -56,6 +56,10 @@ class FreeTimer extends Component {
     this.startCountDown();
   }
 
+  componentWillUnmount() {
+    clearInterval(this.intervalHandle);
+  }
+
   render() {
     if (this.state.redirect) return <Redirect to={LINKS.getPro} />;
     return (
