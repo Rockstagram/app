@@ -24,7 +24,7 @@ const SideMenu = ({ expired, user }) => {
     },
     Help: {
       direct: true,
-      url: `mailto:mail@rockstagram.app?subject=Please help!&body=%0A
+      url: `mailto:mail@rockstagram.app?subject=Please help&body=%0A
       %0A------
       %0AUsername: ${user.email}
       %0AExpired: ${expired}`,
