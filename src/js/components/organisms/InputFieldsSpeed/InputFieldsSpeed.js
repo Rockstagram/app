@@ -56,15 +56,12 @@ const InputFieldsSpeed = ({
         <ul>
           <li>
             Slow: ~{Math.floor((60000 * baseFactor * 1) / baseSpeed)} users/h
-            (Included)
           </li>
           <li>
             Med: ~{Math.floor((60000 * baseFactor * 2) / baseSpeed)} users/h
-            (Pro)
           </li>
           <li>
             Fast: ~{Math.floor((60000 * baseFactor * 3) / baseSpeed)} users/h
-            (Pro)
           </li>
           <li>Maximum: max users/h (Premium)</li>
         </ul>
