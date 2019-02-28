@@ -35,13 +35,14 @@ class FreeTimer extends Component {
     const min = Math.floor(this.secondsRemaining / 60) - hour * 60;
     const sec = Math.floor(this.secondsRemaining - min * 60 - hour * 60 * 60);
 
+    if ((sec <= 0 && min <= 0 && hour <= 0) || sec < 0 || min < 0 || hour < 0)
+      return this.isExpired();
+
     this.setState({
       hours: hour < 10 ? '0' + hour : hour,
       minutes: min < 10 ? '0' + min : min,
       seconds: sec < 10 ? '0' + sec : sec
     });
-
-    if (sec === 0 && min === 0 && hour === 0) return this.isExpired();
 
     this.secondsRemaining--;
   };
