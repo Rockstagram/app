@@ -1,5 +1,10 @@
 import { authRef, usersRef } from 'firebase-helper';
-import { LOGIN_USER, GET_USER, LOGOUT_USER } from 'redux/actions/types';
+import {
+  LOGIN_USER,
+  GET_USER,
+  LOGOUT_USER,
+  EXPIRED_USER
+} from 'redux/actions/types';
 
 export const fetchUser = () => dispatch =>
   authRef.onAuthStateChanged(user => {
@@ -45,4 +50,11 @@ export const logout = () => dispatch => {
     .signOut()
     .then(user => console.log(user)) // will be handled by fetchUser()
     .catch(err => alert(err));
+};
+
+export const expired = expired => {
+  return {
+    type: EXPIRED_USER,
+    payload: expired
+  };
 };

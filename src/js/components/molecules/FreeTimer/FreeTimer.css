@@ -1,0 +1,8 @@
+.FreeTimer {
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.FreeTimer__title {
+  margin-right: 5px;
+}

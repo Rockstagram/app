@@ -1,10 +1,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { connect } from 'react-redux';
 
 import './SideMenu.css';
 
-const SideMenu = () => {
+const SideMenu = ({ expired }) => {
+  if (expired) return '';
+
   const links = {
     Home: {
       url: '/',
@@ -44,4 +47,11 @@ const SideMenu = () => {
   return <ul className="SideMenu">{linkList}</ul>;
 };
 
-export default SideMenu;
+const mapStateToProps = state => ({
+  expired: state.user.expired
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(SideMenu);

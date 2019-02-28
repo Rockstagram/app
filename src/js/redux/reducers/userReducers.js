@@ -1,9 +1,15 @@
-import { LOGIN_USER, LOGOUT_USER, GET_USER } from 'redux/actions/types';
+import {
+  LOGIN_USER,
+  LOGOUT_USER,
+  GET_USER,
+  EXPIRED_USER
+} from 'redux/actions/types';
 
 const initialState = {
   item: {},
   error: false,
-  loggedIn: false
+  loggedIn: false,
+  expired: false
 };
 
 export default (state = initialState, action) => {
@@ -29,6 +35,13 @@ export default (state = initialState, action) => {
       ...state,
       item: action.payload,
       loggedIn: true
+    };
+
+  case EXPIRED_USER:
+    // Check if action dispatched is POST_TASK and act on that
+    return {
+      ...state,
+      expired: action.payload
     };
 
   default:

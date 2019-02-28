@@ -5,3 +5,9 @@
   padding: 10px;
   background: var(--c-background-header);
 }
+
+.Header__container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+}
