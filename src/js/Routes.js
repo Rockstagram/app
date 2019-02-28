@@ -8,6 +8,7 @@ import {
   NotFound,
   InstaFollow,
   InstaClean,
+  InstaMessage,
   GetPro,
   Account,
   Auth
@@ -50,7 +51,7 @@ const Routes = () => {
         <ProFeature />
       </PrivateRoute>
       <PrivateRoute exact path={`${LINKS.instaMessage}/*`}>
-        <ProFeature />
+        <InstaMessage />
       </PrivateRoute>
       <PrivateRoute exact path={`${LINKS.getPro}`}>
         <GetPro />

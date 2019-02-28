@@ -3,6 +3,7 @@ import './CreateTask.css';
 import {
   ContentPanel,
   InputFieldsKeyword,
+  InputFieldsDirectMessage,
   InputFieldsUserHandle,
   InputFieldsSpeed,
   InputFieldsCredentials
@@ -23,6 +24,7 @@ class CreateTask extends Component {
     keyword: '',
     userHandle: '',
     speed: 1,
+    text: '',
     redirect: false
   };
 
@@ -58,7 +60,7 @@ ${trial ? 'Upgrade your plan to remove the limits.' : ''}
 
     if (!this.checkLimits()) return false;
 
-    const { password, username, keyword, userHandle, speed } = this.state;
+    const { password, username, keyword, userHandle, speed, text } = this.state;
     const { baseSpeed, message, title, type } = this.props;
     this.props.postTask({
       config: {
@@ -66,6 +68,7 @@ ${trial ? 'Upgrade your plan to remove the limits.' : ''}
         username,
         keyword,
         userHandle,
+        text,
         wait: baseSpeed / (speed * 1) // speed
       },
       id: Helper.generateUUID(),
@@ -84,10 +87,11 @@ ${trial ? 'Upgrade your plan to remove the limits.' : ''}
     if (this.state.redirect) return <Redirect to={LINKS.dashboard} />;
     if (this.state.buyPro) return <Redirect to={LINKS.getPro} />;
 
-    const { username, password, keyword, userHandle, speed } = this.state;
+    const { username, password, keyword, userHandle, speed, text } = this.state;
     const {
       title,
       hasSpeed,
+      hasText,
       hasKeyword,
       hasUserHandle,
       baseSpeed,
@@ -133,6 +137,14 @@ ${trial ? 'Upgrade your plan to remove the limits.' : ''}
                   onChange={this.handleChange}
                   baseSpeed={baseSpeed}
                   baseFactor={baseFactor}
+                />
+              ) : (
+                ''
+              )}
+              {hasText ? (
+                <InputFieldsDirectMessage
+                  text={text}
+                  onChange={this.handleChange}
                 />
               ) : (
                 ''
