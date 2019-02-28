@@ -1,29 +1,31 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 
 import {
-  faTachometerAlt,
-  faUserCircle,
-  faPlusCircle,
-  faPlayCircle,
   faAddressBook,
   faBriefcaseMedical,
-  faQuestionCircle,
+  faCertificate,
   faCommentDots,
   faCommentsDollar,
-  faCertificate,
-  faLock
+  faLifeRing,
+  faLock,
+  faPlayCircle,
+  faPlusCircle,
+  faQuestionCircle,
+  faTachometerAlt,
+  faUserCircle
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add([
-  faTachometerAlt,
-  faUserCircle,
-  faPlusCircle,
-  faPlayCircle,
   faAddressBook,
   faBriefcaseMedical,
-  faQuestionCircle,
+  faCertificate,
   faCommentDots,
   faCommentsDollar,
-  faCertificate,
-  faLock
+  faLifeRing,
+  faLock,
+  faPlayCircle,
+  faPlusCircle,
+  faQuestionCircle,
+  faTachometerAlt,
+  faUserCircle
 ]);
