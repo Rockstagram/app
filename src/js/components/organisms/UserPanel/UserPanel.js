@@ -4,18 +4,11 @@ import { connect } from 'react-redux';
 import { ContentPanel, LogoutButton } from 'components';
 import { Helper } from 'controllers';
 import './UserPanel.css';
-import { planSizes } from 'constantz';
-const { LARGE } = planSizes;
 
 class UserPanel extends Component {
   render() {
-    const { email: username, plan } = this.props.user.item;
-    const accountType =
-      plan === 'plan-s'
-        ? 'free'
-        : plan === 'plan-m'
-          ? 'professional'
-          : 'ultimate';
+    const { email: username, trial } = this.props.user.item;
+    const accountType = trial ? 'free' : 'professional';
     return (
       <ContentPanel className="UserPanel">
         <h3 className="h3">Your User Panel</h3>
@@ -34,7 +27,7 @@ class UserPanel extends Component {
           </div>
 
           <LogoutButton />
-          {plan !== LARGE ? (
+          {trial ? (
             <button
               type="button"
               className="btn btn--cta"

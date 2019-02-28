@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 import { InfoPanel } from 'components';
 import { LINKS } from 'Routes';
 import './StartPanels.css';
-import { planSizes } from 'constantz';
-const { SMALL, LARGE } = planSizes;
 
 const StartPanels = ({ user }) => {
+  const { trial } = user;
   const cObjs = [
     {
       id: 'insta-follow',
@@ -34,8 +33,7 @@ const StartPanels = ({ user }) => {
         'Increase your Instagram Relevance-Score by auto-unfollowing inactive users',
       longDesc: `How it works: Rockstagram use artificial intelligence to figure out useless and inactive
       people within your followers and un-follows them. This helps increasing your Instagram Trust-Score.
-      If the follower-following ratio is bad, instagram downgrades your rating. Insta-Clean prevents that.`,
-      disabled: user.plan === SMALL
+      If the follower-following ratio is bad, instagram downgrades your rating. Insta-Clean prevents that.`
     },
     {
       id: 'insta-comment',
@@ -53,7 +51,7 @@ const StartPanels = ({ user }) => {
       That’s why Rockstagram understands pictures. Rockstagram automatically likes great content
       and write meaningful comments based on the pictures content.
       This is how you’ll skyrocket your followers engagement automatically in 1 minute setup.`,
-      disabled: user.plan !== LARGE
+      disabled: trial
     },
     {
       id: 'insta-message',
@@ -71,7 +69,7 @@ const StartPanels = ({ user }) => {
       longDesc: `How it works: Rockstagram use artificial intelligence to 
       automatically write your followers the messages you want them to read.
       This is how you can reach insane sales-grow in less than 5 minutes setup.`,
-      disabled: user.plan !== LARGE
+      disabled: trial
     }
   ];
   const panels = cObjs.map(cObj => <InfoPanel cObj={cObj} key={cObj.id} />);

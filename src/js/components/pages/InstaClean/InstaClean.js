@@ -1,16 +1,8 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-
-import { LINKS } from 'Routes';
 import { GenericTemplate, CreateTask } from 'components';
-import { planSizes } from 'constantz';
-const { SMALL } = planSizes;
 
 class InstaClean extends Component {
   render() {
-    if (this.props.user.plan === SMALL) return <Redirect to={LINKS.getPro} />;
-
     return (
       <GenericTemplate title="Instagram Cleaner" className="InstaClean">
         <CreateTask
@@ -27,12 +19,4 @@ class InstaClean extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  user: state.user.item
-});
-
-// Use connect to put them together
-export default connect(
-  mapStateToProps,
-  null
-)(InstaClean);
+export default InstaClean;

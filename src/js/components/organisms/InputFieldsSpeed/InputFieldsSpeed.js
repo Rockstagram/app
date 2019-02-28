@@ -1,8 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { RadioButtons } from 'components';
-import { planSizes } from 'constantz';
-const { SMALL, LARGE } = planSizes;
 
 const InputFieldsSpeed = ({
   speed,
@@ -24,7 +22,6 @@ const InputFieldsSpeed = ({
       checked: speed === 3,
       content: 'Med',
       tooltip: 'medium speed [Pro Feature]',
-      disabled: user.plan === SMALL,
       isPro: 'pro'
     },
     {
@@ -32,7 +29,6 @@ const InputFieldsSpeed = ({
       checked: speed === 4,
       content: 'Fast',
       tooltip: 'fast speed [Pro Feature]',
-      disabled: user.plan === SMALL,
       isPro: 'pro'
     },
     {
@@ -40,7 +36,7 @@ const InputFieldsSpeed = ({
       checked: speed === 8,
       content: 'Maximum',
       tooltip: 'extreme speed [Premium Feature]',
-      disabled: user.plan !== LARGE,
+      disabled: user.trial,
       isPro: 'premium'
     }
   ];

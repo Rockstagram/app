@@ -13,9 +13,8 @@ import { postTask } from 'redux/actions/taskActions';
 import { Redirect } from 'react-router-dom';
 import { LINKS } from 'Routes';
 import { Helper } from 'controllers';
-import { workerStates, parallelTasks, planSizes } from 'constantz';
+import { workerStates, parallelTasks } from 'constantz';
 const { START, PLAYING } = workerStates;
-const { SMALL, MEDIUM, LARGE } = planSizes;
 
 class CreateTask extends Component {
   state = {
@@ -34,21 +33,18 @@ class CreateTask extends Component {
   };
 
   checkLimits = () => {
-    const { userPlan, taskItems, type } = this.props;
+    const { user, taskItems, type } = this.props;
+    const trial = user.trial;
     const runningTasks = taskItems.filter(
       task => task.state === PLAYING && task.type === type
     );
-    const mapPlansToTasks = {
-      [SMALL]: parallelTasks[SMALL],
-      [MEDIUM]: parallelTasks[MEDIUM],
-      [LARGE]: parallelTasks[LARGE]
-    };
-    if (runningTasks.length >= mapPlansToTasks[userPlan]) {
-      console.log(runningTasks.length, mapPlansToTasks[userPlan], userPlan);
+    const parallel = trial ? parallelTasks.min : parallelTasks.max;
+    if (runningTasks.length >= parallel) {
+      console.log(runningTasks.length, parallel, user);
       const choice = window.confirm(`
 You’re not allowed to run more than
-${mapPlansToTasks[userPlan]} Tasks of the same type in parallel.
-${userPlan !== LARGE ? 'Upgrade your plan to remove the limits.' : ''}
+${parallel} Tasks of the same type in parallel.
+${trial ? 'Upgrade your plan to remove the limits.' : ''}
       `);
       console.log(choice);
       if (choice) this.setState({ buyPro: true });
@@ -155,7 +151,7 @@ ${userPlan !== LARGE ? 'Upgrade your plan to remove the limits.' : ''}
 
 const mapStateToProps = state => ({
   taskItems: state.tasks.items,
-  userPlan: state.user.item.plan
+  user: state.user.item
 });
 const mapActionsToProps = { postTask };
 

@@ -9,21 +9,15 @@ export default class FeatureLocked extends Component {
   render() {
     const items = [
       {
-        title: 'Get Professional',
-        listItems: ['Access to Insta-Cleaner', 'Use Medium & Fast Speed'],
-        buttonText: 'Get Professional'
-      },
-      {
-        title: 'Get Ultimate !',
+        title: 'Get Professional !',
         listItems: [
-          'Access to Insta-Cleaner',
-          'Access to Insta-Commenter',
-          'Access to Insta-Messenger',
+          'Full access to all features',
+          'No time limit',
           <span>
             Use <strong className="italic">Maximum Speed</strong> !
           </span>
         ],
-        buttonText: 'Get Ultimate'
+        buttonText: 'Get Professional'
       }
     ].map((item, key) => (
       <React.Fragment key={key}>

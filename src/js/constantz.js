@@ -1,13 +1,7 @@
-module.exports.planSizes = {
-  SMALL: 'plan-s',
-  MEDIUM: 'plan-m',
-  LARGE: 'plan-l'
-};
-
 module.exports.parallelTasks = {
-  'plan-s': 1,
-  'plan-m': 2,
-  'plan-l': 4
+  min: 1,
+  med: 2,
+  max: 4
 };
 
 module.exports.workerStates = {
