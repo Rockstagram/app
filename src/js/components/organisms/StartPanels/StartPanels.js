@@ -53,7 +53,7 @@ const StartPanels = ({ user }) => {
       id: 'insta-post',
       icon: 'images',
       title: 'Insta Poster',
-      link: `${LINKS.instaLike}/new`,
+      link: `${LINKS.instaPost}/new`,
       features: [
         'Increase relevance',
         'Increase followers',

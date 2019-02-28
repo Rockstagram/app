@@ -21,7 +21,7 @@ export const LINKS = {
   instaFollow: '/insta-follow',
   instaClean: '/insta-clean',
   instaComment: '/insta-comment',
-  instaLike: '/insta-post',
+  instaPost: '/insta-post',
   getPro: '/get/pro',
   tasks: '/tasks',
   other: '/other',
