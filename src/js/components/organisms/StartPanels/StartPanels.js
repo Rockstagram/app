@@ -40,11 +40,7 @@ const StartPanels = ({ user }) => {
       icon: 'comment-dots',
       title: 'Insta Commenter',
       link: `${LINKS.instaComment}/new`,
-      features: [
-        'Engage with followers',
-        'Write meaningful comments',
-        'Likes great content'
-      ],
+      features: ['Engage with followers', 'Write meaningful comments'],
       shortDesc:
         'Increase your followers engagement by auto-liking & auto-commenting their posts',
       longDesc: `How it works: Rockstagram use machine learning and artificial intelligence.
@@ -54,21 +50,20 @@ const StartPanels = ({ user }) => {
       disabled: trial
     },
     {
-      id: 'insta-message',
-      icon: 'comments-dollar',
-      title: 'Insta Messenger',
-      link: `${LINKS.instaMessage}/new`,
+      id: 'insta-post',
+      icon: 'images',
+      title: 'Insta Poster',
+      link: `${LINKS.instaLike}/new`,
       features: [
-        'Increase your sales',
-        'Get customer feedback',
-        'Direct message followers',
-        'Engage with followers'
+        'Increase relevance',
+        'Increase followers',
+        'Increase engagement',
+        'Post great content'
       ],
-      shortDesc:
-        'Increase your sales with customized automatic direct messaging',
-      longDesc: `How it works: Rockstagram use artificial intelligence to 
-      automatically write your followers the messages you want them to read.
-      This is how you can reach insane sales-grow in less than 5 minutes setup.`,
+      shortDesc: 'Increase your relevance by posting content automatically',
+      longDesc: `How it works: Rockstagram understands your brand and helps to post 
+      breathtaking content automatically every day.
+      This is how you’ll skyrocket your business, followers count and engagement automatically with 60 minute setup.`,
       disabled: trial
     }
   ];
