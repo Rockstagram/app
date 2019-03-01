@@ -21,7 +21,7 @@ export const LINKS = {
   instaFollow: '/insta-follow',
   instaClean: '/insta-clean',
   instaComment: '/insta-comment',
-  instaPost: '/insta-post',
+  instaLike: '/insta-like',
   getPro: '/get/pro',
   tasks: '/tasks',
   other: '/other',
@@ -49,7 +49,7 @@ const Routes = () => {
       <PrivateRoute exact path={`${LINKS.instaComment}/*`}>
         <ProFeature />
       </PrivateRoute>
-      <PrivateRoute exact path={`${LINKS.instaPost}/*`}>
+      <PrivateRoute exact path={`${LINKS.instaLike}/*`}>
         <ProFeature />
       </PrivateRoute>
       <PrivateRoute exact path={`${LINKS.getPro}`}>

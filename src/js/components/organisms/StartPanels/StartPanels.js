@@ -42,29 +42,23 @@ const StartPanels = ({ user }) => {
       link: `${LINKS.instaComment}/new`,
       features: ['Engage with followers', 'Write meaningful comments'],
       shortDesc:
-        'Increase your followers engagement by auto-liking & auto-commenting their posts',
+        'Increase engagement & visibility to potential buyers by auto-commenting posts',
       longDesc: `How it works: Rockstagram use machine learning and artificial intelligence.
       That’s why Rockstagram understands pictures. Rockstagram automatically likes great content
       and write meaningful comments based on the pictures content.
-      This is how you’ll skyrocket your followers engagement automatically in 1 minute setup.`,
+      This is how you’ll skyrocket your followers engagement with your brand automatically in 1 minute setup.`,
       disabled: trial
     },
     {
-      id: 'insta-post',
-      icon: 'images',
-      title: 'Insta Poster',
-      link: `${LINKS.instaPost}/new`,
-      features: [
-        'Increase relevance',
-        'Increase followers',
-        'Increase engagement',
-        'Post great content'
-      ],
-      shortDesc: 'Increase your relevance by posting content automatically',
-      longDesc: `How it works: Rockstagram understands your brand and helps to post 
-      breathtaking content automatically every day.
-      This is how you’ll skyrocket your business, followers count and engagement automatically with 60 minute setup.`,
-      disabled: trial
+      id: 'insta-like',
+      icon: 'heart',
+      title: 'Insta Liker',
+      link: `${LINKS.instaLike}/new`,
+      features: ['Increase engagement', 'Like great posts'],
+      shortDesc:
+        'Increase your followers engagement by liking great content automatically',
+      longDesc: `How it works: Rockstagram understands images and likes good content automatically.
+      This is how you’ll engage your followers to like your content back with 1 minute setup.`
     }
   ];
   const panels = cObjs.map(cObj => <InfoPanel cObj={cObj} key={cObj.id} />);
