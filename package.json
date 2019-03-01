@@ -1,6 +1,6 @@
 {
   "name": "rockstagram",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Automatically follow people in your niche, write comments, clean useless followers, write private messages and much more",
   "author": "Rockstagram",
   "private": true,
