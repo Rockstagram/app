@@ -10,6 +10,7 @@ export const fetchUser = () => dispatch =>
   authRef.onAuthStateChanged(user => {
     if (user) {
       console.log('USER SIGNED IN');
+      localStorage.setItem('uid', user.uid);
       return usersRef.child(user.uid).on('value', dbUser =>
         dispatch({
           type: LOGIN_USER,
@@ -18,6 +19,7 @@ export const fetchUser = () => dispatch =>
       );
     } else {
       console.log('NO USER');
+      localStorage.removeItem('uid');
       return dispatch({
         type: LOGOUT_USER,
         payload: false
