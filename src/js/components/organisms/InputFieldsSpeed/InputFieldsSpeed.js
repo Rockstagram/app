@@ -18,22 +18,22 @@ const InputFieldsSpeed = ({
       content: 'Slow'
     },
     {
-      value: 3,
-      checked: speed === 3,
+      value: 2,
+      checked: speed === 2,
       content: 'Med',
       tooltip: 'medium speed [Pro Feature]',
       isPro: 'pro'
     },
     {
-      value: 4,
-      checked: speed === 4,
+      value: 3,
+      checked: speed === 3,
       content: 'Fast',
       tooltip: 'fast speed [Pro Feature]',
       isPro: 'pro'
     },
     {
-      value: 8,
-      checked: speed === 8,
+      value: 6,
+      checked: speed === 6,
       content: 'Maximum',
       tooltip: 'extreme speed [Premium Feature]',
       disabled: user.trial,
@@ -54,16 +54,13 @@ const InputFieldsSpeed = ({
       </div>
       <div className={`${className}__subtext`}>
         <ul>
+          <li>Slow: ~{Math.floor((60000 * baseFactor * 1) / baseSpeed)}/h</li>
+          <li>Med: ~{Math.floor((60000 * baseFactor * 1.5) / baseSpeed)}/h</li>
+          <li>Fast: ~{Math.floor((60000 * baseFactor * 2) / baseSpeed)}/h</li>
           <li>
-            Slow: ~{Math.floor((60000 * baseFactor * 1) / baseSpeed)} users/h
+            Maximum: ~{Math.floor((60000 * baseFactor * 4.5) / baseSpeed)}/h
+            (Premium)
           </li>
-          <li>
-            Med: ~{Math.floor((60000 * baseFactor * 2) / baseSpeed)} users/h
-          </li>
-          <li>
-            Fast: ~{Math.floor((60000 * baseFactor * 3) / baseSpeed)} users/h
-          </li>
-          <li>Maximum: max users/h (Premium)</li>
         </ul>
       </div>
     </div>
